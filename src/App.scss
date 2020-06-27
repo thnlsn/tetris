@@ -1,4 +1,26 @@
+$fire-opal: #dd614a;
+$middle-red: #f48668;
+$vivid-tangerine: #f4a698;
+$color-grey-dark: #777;
+$color-white: #fff;
+$color-black: #000;
+
 .App {
   text-align: center;
-  padding: 5rem;
+  padding: 3rem;
+}
+
+.grid {
+  width: 40rem;
+  height: 80rem;
+  background-color: $fire-opal;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+
+  &__unit {
+    height: 4rem;
+    width: 4rem;
+    border: 1px solid $vivid-tangerine;
+  }
 }
