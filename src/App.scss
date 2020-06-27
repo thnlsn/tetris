@@ -1,6 +1,7 @@
 $fire-opal: #dd614a;
 $middle-red: #f48668;
 $vivid-tangerine: #f4a698;
+$st-patricks-blue: #2a2a72;
 $color-grey-dark: #777;
 $color-white: #fff;
 $color-black: #000;
@@ -23,4 +24,8 @@ $color-black: #000;
     width: 4rem;
     border: 1px solid $vivid-tangerine;
   }
+}
+
+.tetromino {
+  background-color: $st-patricks-blue;
 }
