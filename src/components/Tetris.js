@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { createStage, Rows } from '../gameHelpers';
+import { createStage } from '../gameHelpers';
 
 // Components
 import Stage from './Stage';
@@ -10,7 +10,8 @@ import StartButton from './StartButton';
 const Tetris = () => {
   return (
     <div>
-      <Stage stage={createStage()} rows={Rows} />
+      {/* Invoke createStage() here so it is sent as the array rather than the function to call later */}
+      <Stage stage={createStage()} />
       <aside>
         <div>
           <Display text={'Score'} />

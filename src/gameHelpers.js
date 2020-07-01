@@ -1,8 +1,6 @@
 export const STAGE_WIDTH = 12;
 export const STAGE_HEIGHT = 20;
 
-export const Rows = Array.from(Array(STAGE_HEIGHT), () => 1);
-
 // Multidimensional array to represent the grid
 export const createStage = () =>
   // Creating an array from an array that is equal to 20 empty indexes (imagine a vertical array representing stage height)
