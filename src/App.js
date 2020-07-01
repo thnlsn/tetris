@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from 'react';
 import './App.scss';
 
 import Tetris from './components/Tetris';
-import Grid from './components/grid/Grid';
 
 function App() {
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
