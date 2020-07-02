@@ -10,5 +10,5 @@ export const usePlayer = () => {
   });
 };
 
-// Return the player
+// Return the player in an array by itself
 return [player];

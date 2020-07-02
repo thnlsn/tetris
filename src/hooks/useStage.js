@@ -5,4 +5,5 @@ export const useStage = () => {
   const [stage, useStage] = useState(createStage());
 };
 
+// Returning needed values in an array
 return [stage, setStage];
