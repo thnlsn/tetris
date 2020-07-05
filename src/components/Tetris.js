@@ -26,15 +26,46 @@ const Tetris = () => {
   // Console.log whenever component re-renders
   console.log('re-render');
 
-  // Player movement
-  const movePlayer = (direction) => {};
+  // Player movement -- Left/Right
+  const movePlayer = (direction) => {
+    updatePlayerPos({ x: dir, y: 0, collided: false });
+  };
 
-  const startGame = () => {};
+  const startGame = () => {
+    // Reset everything
+    setStage(createStage());
+  };
+
+  // Player movement -- Down
+  const drop = () => {
+    updatePlayerPos({ x: 0, y: 0, collided: false });
+  };
 
   const dropPlayer = () => {};
 
   // Move function using the key pressed (destructured) as parameter
-  const move = ({ keyCode }) => {};
+  const move = ({ keyCode }) => {
+    console.log(keyCode);
+    if (!gameOver) {
+      switch (keyCode) {
+        case 37: // Left arrow keycode
+          movePlayer(-1);
+          break;
+
+        case 38: // Up arrow keycode
+          movePlayer(-1);
+          break;
+
+        case 39: // Right arrow keycode
+          drop();
+          break;
+
+        case 40: // Down arrow keycode
+          movePlayer(-1);
+          break;
+      }
+    }
+  };
 
   return (
     <StyledTetrisWrapper
@@ -57,7 +88,7 @@ const Tetris = () => {
               <Display text='Level' />
             </div>
           )}
-          <StartButton callback='' />
+          <StartButton onClick={startGame()} />
         </aside>
       </StyledTetris>
     </StyledTetrisWrapper>
