@@ -4,9 +4,9 @@ import { createStage } from '../gameHelpers';
 export const useStage = (player, resetPlayer) => {
   const [stage, setStage] = useState(createStage());
 
-  // This useEffect must be in a useCallback or else it will loop infinitely
   // useEffect because this should happen as a side effect of the player moving the tetromino (x), it falling down (y), the tetromino changing, or the tetromino colliding
   useEffect(() => {
+    console.log('useEffect run!');
     const updateStage = (prevStage) => {
       // First clear stage from previous render by removing everything that should not be there
       const newStage = prevStage.map((
@@ -17,7 +17,7 @@ export const useStage = (player, resetPlayer) => {
       );
 
       // Then draw the tetromino
-      // First we map through each row (ex: [0, 'I', 0, 0]) -- the y axis
+      // First we map through each row (ex: [0, 'I', 0, 0]) -- the y axis // I THINK y IS THE INDEX OF THE LETTER IN THE LITTLE GRID OF TETROMINO
       player.tetromino.forEach((row, y) => {
         // For each row we map through it's values (0 or the letter of the tetromino) -- the x axis
         row.forEach((value, x) => {
@@ -30,12 +30,12 @@ export const useStage = (player, resetPlayer) => {
           }
         });
       });
-
       return newStage;
     };
 
+    // What to update for
     setStage((prev) => updateStage(prev));
-  }, [player.collided, player.pos.x, player.pos.y, player.tetromino]);
+  }, [player, resetPlayer]);
 
   // Returning needed values in an array
   return [stage, setStage];

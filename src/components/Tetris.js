@@ -20,28 +20,32 @@ const Tetris = () => {
   const [gameOver, setGameOver] = useState(false);
 
   // Custom Hooks, destructured
-  const [player] = usePlayer();
-  const [stage, setStage] = useStage(player); // Passing in player because we already have access to it
+
+  const [player, updatePlayerPos, resetPlayer] = usePlayer();
+  const [stage, setStage] = useStage(player, resetPlayer); // Passing in player because we already have access to it
 
   // Console.log whenever component re-renders
   console.log('re-render');
 
   // Player movement -- Left/Right
   const movePlayer = (direction) => {
-    updatePlayerPos({ x: dir, y: 0, collided: false });
+    updatePlayerPos({ x: direction, y: 0, collided: false });
   };
 
   const startGame = () => {
     // Reset everything
-    setStage(createStage());
+    setStage(createStage()); // Creates blank stage
+    resetPlayer(); // Sets player to the middle of the grid
   };
 
   // Player movement -- Down
   const drop = () => {
-    updatePlayerPos({ x: 0, y: 0, collided: false });
+    updatePlayerPos({ x: 0, y: 1, collided: false });
   };
 
-  const dropPlayer = () => {};
+  const dropPlayer = () => {
+    drop();
+  };
 
   // Move function using the key pressed (destructured) as parameter
   const move = ({ keyCode }) => {
@@ -53,15 +57,15 @@ const Tetris = () => {
           break;
 
         case 38: // Up arrow keycode
-          movePlayer(-1);
+          // Rotate function
           break;
 
         case 39: // Right arrow keycode
-          drop();
+          movePlayer(1);
           break;
 
         case 40: // Down arrow keycode
-          movePlayer(-1);
+          dropPlayer();
           break;
       }
     }
@@ -79,7 +83,7 @@ const Tetris = () => {
         <aside>
           {/* If gameOver is true, display a Display component with gameOver value so the styled component will set text to red */}
           {gameOver ? (
-            <Display gameOver text></Display>
+            <Display gameOver={gameOver} text='Game Over'></Display>
           ) : (
             /* Otherwise, if false, then show displays of the current game information */
             <div>
@@ -88,7 +92,7 @@ const Tetris = () => {
               <Display text='Level' />
             </div>
           )}
-          <StartButton onClick={startGame()} />
+          <StartButton callback={startGame} />
         </aside>
       </StyledTetris>
     </StyledTetrisWrapper>

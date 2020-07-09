@@ -11,12 +11,12 @@ html {
   // Browser default size is 16px, but we want to set it to a percentage in case people with bad eyes have a different default
   // The percentage is 62.5% because it equates to 10px assuming the 16px default
   font-size: 62.5%;
-  height: 100%;
+  height: 100vh;
 }
 
 // Setting this in body because fonts will be inherited by child elements
 body {
-  background-image: repeating-linear-gradient(to bottom, #88ccf1, #c1dff0);
+  background-image: url(../src/assets/images/noise3.png);
 
   font-family: Arial, Helvetica, 'Roboto', sans-serif;
 
@@ -24,7 +24,7 @@ body {
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  height: 100%;
-  background-repeat: no-repeat;
+  height: 100vh;
+  background-repeat: repeat;
   background-attachment: fixed;
 }
