@@ -51,22 +51,14 @@ const Tetris = () => {
   const move = ({ keyCode }) => {
     console.log(keyCode);
     if (!gameOver) {
-      switch (keyCode) {
-        case 37: // Left arrow keycode
-          movePlayer(-1);
-          break;
-
-        case 38: // Up arrow keycode
-          // Rotate function
-          break;
-
-        case 39: // Right arrow keycode
-          movePlayer(1);
-          break;
-
-        case 40: // Down arrow keycode
-          dropPlayer();
-          break;
+      if (keyCode === 37) { // Left
+        movePlayer(-1);
+      } else if (keyCode === 39) { // Right
+        movePlayer(1);
+      } else if (keyCode === 40) { // Down
+        dropPlayer();
+      } else if (keyCode === 38) { // Up
+        // Rotate player tetromino
       }
     }
   };
