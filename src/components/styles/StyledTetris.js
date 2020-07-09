@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
-// import a bgImage here if desired
+import bgImage from '../../assets/images/noise3.png';
 
 export const StyledTetrisWrapper = styled.div`
   width: 100vh;
   height: 100vh;
+  background: url(${bgImage});
+  background-repeat: repeat;
+  overflow: hidden;
 `;
-// background: url(${bgImage}) #fff
-// background-size: cover;
-// overflow: hidden
 
 export const StyledTetris = styled.div`
   display: flex;

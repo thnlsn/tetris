@@ -20,8 +20,12 @@ const Tetris = () => {
   const [gameOver, setGameOver] = useState(false);
 
   // Custom Hooks, destructured
-
+  // player is the original state of player (which is technically at the top left of grid, but value 0 which is nothing)
+  // updatePlayerPos invokes setPlayer and takes it's previous properties and plus or minuses x/y values depending on keypress
+  // resetPlayer is what gives us out first real tetromino and centers it on the grid for it's initial placement
   const [player, updatePlayerPos, resetPlayer] = usePlayer();
+
+  // stage is the inital stage built by createStage() in gameHelpers.js
   const [stage, setStage] = useStage(player, resetPlayer); // Passing in player because we already have access to it
 
   // Console.log whenever component re-renders
@@ -51,13 +55,17 @@ const Tetris = () => {
   const move = ({ keyCode }) => {
     console.log(keyCode);
     if (!gameOver) {
-      if (keyCode === 37) { // Left
+      if (keyCode === 37) {
+        // Left
         movePlayer(-1);
-      } else if (keyCode === 39) { // Right
+      } else if (keyCode === 39) {
+        // Right
         movePlayer(1);
-      } else if (keyCode === 40) { // Down
+      } else if (keyCode === 40) {
+        // Down
         dropPlayer();
-      } else if (keyCode === 38) { // Up
+      } else if (keyCode === 38) {
+        // Up
         // Rotate player tetromino
       }
     }
