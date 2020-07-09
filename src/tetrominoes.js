@@ -11,9 +11,9 @@ export const TETROMINOES = {
   },
   J: {
     shape: [
-      [0, 'J', 0],
-      [0, 'J', 0],
-      ['J', 'J', 0],
+      [0, 0, 'J'],
+      [0, 0, 'J'],
+      [0, 'J', 'J'],
     ],
     color: '223, 173, 36',
   },
@@ -27,8 +27,8 @@ export const TETROMINOES = {
   },
   O: {
     shape: [
-      ['O', 'O'],
-      ['O', 'O'],
+      [0, 'O', 'O'],
+      [0, 'O', 'O'],
     ],
     color: '223, 217, 36',
   },

@@ -7,6 +7,7 @@ export const useStage = (player, resetPlayer) => {
   // useEffect because this should happen as a side effect of the player moving the tetromino (x), it falling down (y), the tetromino changing, or the tetromino colliding
   useEffect(() => {
     console.log('useEffect run!');
+    // Use the previous state as a parameter
     const updateStage = (prevStage) => {
       // First clear stage from previous render by removing everything that should not be there
       const newStage = prevStage.map((
@@ -17,25 +18,30 @@ export const useStage = (player, resetPlayer) => {
       );
 
       // Then draw the tetromino
-      // First we map through each row (ex: [0, 'I', 0, 0]) -- the y axis // I THINK y IS THE INDEX OF THE LETTER IN THE LITTLE GRID OF TETROMINO
+      // First we map through each row (ex: [0, 'I', 0, 0]) -- the y axis // y is the index of rows array
       player.tetromino.forEach((row, y) => {
-        // For each row we map through it's values (0 or the letter of the tetromino) -- the x axis
+        // For each row we map through it's values (0 or the letter of the tetromino) -- the x axis // x is the index of the cells
         row.forEach((value, x) => {
           // If the value is NOT 0 (meaning it's a string of I, J, L, O S, T, or Z), then we know that the cell is one that makes up the shape of the tetromino (check tetrominoes.js)
           if (value !== 0) {
+            // newStage at index y (row), then in that rows index x (cell), we have the cell [value, collidedValue]
             newStage[y + player.pos.y][x + player.pos.x] = [
+              // Set the value to whatever it is which is not 0 for sure, because of the if statement
               value,
+              // Set the collided to 'merged' if it hit the bottom or another block, otherwise 'clear' because it just moved
               `${player.collided ? 'merged' : 'clear'}`,
             ];
           }
         });
       });
+      // Returning the newStage because we want this whole function to equate to the new grid when invoked below
       return newStage;
     };
 
-    // What to update for
+    // Callback in the setState is the previous stage, which we pass into updateStage()
     setStage((prev) => updateStage(prev));
-  }, [player, resetPlayer]);
+    // What to update for
+  }, [player]);
 
   // Returning needed values in an array
   return [stage, setStage];
