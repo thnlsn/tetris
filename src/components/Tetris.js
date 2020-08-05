@@ -32,8 +32,12 @@ const Tetris = () => {
     console.log('re-render');
 
     // Player movement -- Left/Right
-    const movePlayer = (direction) => {
-        updatePlayerPos({ x: direction, y: 0, collided: false });
+    const moveHorizontal = (direction) => {
+        // Check if we are NOT colliding with anything
+        if (!checkCollision[(player, stage, { x: direction, y: direction })]) {
+            // If so, move the player with collision set to false
+            updatePlayerPos({ x: direction, y: 0, collided: false });
+        }
     };
 
     const startGame = () => {
@@ -44,7 +48,14 @@ const Tetris = () => {
 
     // Player movement -- Down
     const drop = () => {
-        updatePlayerPos({ x: 0, y: 1, collided: false });
+        // Check if we are NOT colliding with anything
+        if (!checkCollision[(player, stage, { x: 0, y: 1 })]) {
+            // If so, move the player with collision set to true
+            updatePlayerPos({ x: 0, y: 1, collided: true });
+        } else {
+            if (player.pos.y < 1)
+                updatePlayerPos({ x: 0, y: 1, collided: true });
+        }
     };
 
     const dropPlayer = () => {
@@ -57,10 +68,10 @@ const Tetris = () => {
         if (!gameOver) {
             if (keyCode === 37) {
                 // Left
-                movePlayer(-1);
+                moveHorizontal(-1);
             } else if (keyCode === 39) {
                 // Right
-                movePlayer(1);
+                moveHorizontal(1);
             } else if (keyCode === 40) {
                 // Down
                 dropPlayer();
