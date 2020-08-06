@@ -46,6 +46,7 @@ const Tetris = () => {
         resetPlayer(); // Sets player to the middle of the grid
     };
 
+    //////////////// TEST THIS BLOCK OF CODE
     // Player movement -- Down
     const drop = () => {
         // Check if we are NOT colliding with anything
