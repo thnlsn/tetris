@@ -18,7 +18,7 @@ export const checkCollision = (player, stage, { x: moveX, y: moveY }) => {
         for (let x = 0; x < player.tetromino[0].length; x += 1) {
             // 1. Check if there is in fact a tetromino block (as in IJLOSTZ rather than 0)
             // A letter will coerce to true, but 0 will coerce to false
-            if (player.tetromino[y][x] === 0) {
+            if (player.tetromino[y][x] !== 0) {
                 if (
                     // 2. Check that it is inside the grid height (y), as in not going below the 20 tall grid
                     // Chained short-circuit (checks if first condition is true then stop, if not check second and stop, and so on)
