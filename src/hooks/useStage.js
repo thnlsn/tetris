@@ -36,7 +36,7 @@ export const useStage = (player, resetPlayer) => {
       });
       // Then check for any collisions (will return true if there is)
       if (player.collided) {
-        /*                 resetPlayer(); */
+        resetPlayer();
       }
 
       // Returning the newStage because we want this whole function to equate to the new grid when invoked below
