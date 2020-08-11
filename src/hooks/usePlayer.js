@@ -14,7 +14,6 @@ export const usePlayer = () => {
   const updatePlayerPos = ({ x, y, collided }) => {
     // Parenthesis around curly braces to signify it is not a block
     setPlayer((prev) => ({
-      // Spread the previous player state but update the x and y values by adding (or subtracting if left)
       ...prev,
       pos: { x: (prev.pos.x += x), y: (prev.pos.y += y) },
       collided,

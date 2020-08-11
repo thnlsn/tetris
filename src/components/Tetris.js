@@ -50,10 +50,12 @@ const Tetris = () => {
   // Player movement -- Down
   const drop = () => {
     // Check if we are NOT colliding with anything
-    if (!checkCollision[(player, stage, { x: 0, y: 1 })]) {
-      // If so, move the player with collision set to true
-      updatePlayerPos({ x: 0, y: 1, collided: true });
+    if (!checkCollision(player, stage, { x: 0, y: 1 })) {
+      // If so, move the player with collision set to false
+      updatePlayerPos({ x: 0, y: 1, collided: false });
     } else {
+      // Otherwise we are colliding with something, either the bottom or anothe previous tetromino, so updatePlayerPos with collided set to true
+      // The if condition is checking if y < 1 because
       if (player.pos.y < 1) updatePlayerPos({ x: 0, y: 1, collided: true });
     }
   };
