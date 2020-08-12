@@ -20,6 +20,15 @@ export const usePlayer = () => {
     }));
   };
 
+  const rotate = (matrix, direction) => {
+    // Convert rows to columns using the matrix
+    const rotatedTetromino = matrix.map((_, index) =>
+      matrix.map((column) => column[index])
+    );
+  };
+
+  const playerRotate = (stage, direction) => {};
+
   // resetPlayer position to the center of the grid with useCallback to avoid infinite loops
   const resetPlayer = useCallback(() => {
     setPlayer({
