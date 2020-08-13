@@ -22,12 +22,20 @@ export const usePlayer = () => {
 
   const rotate = (matrix, direction) => {
     // Convert rows to columns using the matrix
-    const rotatedTetromino = matrix.map((_, index) =>
-      matrix.map((column) => column[index])
+    // The matrix is simply the array of arrays that a tetromino consists of, eg. shape: [[0, 0, 'J'], [0, 0, 'J'], [0, 'J', 'J']]
+    const rotatedTetromino = matrix.map(
+      (_, index) => matrix.map((column) => column[index])
+      // 0, 1, 2
     );
+
+    // Reverse each row to get a rotated matrix
+    if (direction < 0) return rotatedTetromino.map((row) => row.reverse());
+    return rotatedTetromino.reverse();
   };
 
-  const playerRotate = (stage, direction) => {};
+  const playerRotate = (stage, direction) => {
+    const playerCopy = JSON.parse(JSON.stringify(player));
+  };
 
   // resetPlayer position to the center of the grid with useCallback to avoid infinite loops
   const resetPlayer = useCallback(() => {
