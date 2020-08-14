@@ -1,7 +1,7 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, cloneElement } from 'react';
 
 import { randomTetromino, TETROMINOES } from '../tetrominoes';
-import { STAGE_WIDTH } from '../gameHelpers';
+import { STAGE_WIDTH, checkCollision } from '../gameHelpers';
 
 export const usePlayer = () => {
   const [player, setPlayer] = useState({
@@ -24,8 +24,9 @@ export const usePlayer = () => {
     // Convert rows to columns using the matrix
     // The matrix is simply the array of arrays that a tetromino consists of, eg. shape: [[0, 0, 'J'], [0, 0, 'J'], [0, 'J', 'J']]
     const rotatedTetromino = matrix.map(
+      // index is equal to the current row the map is on
       (_, index) => matrix.map((column) => column[index])
-      // 0, 1, 2
+      // [[0, 0, 0], ]
     );
 
     // Reverse each row to get a rotated matrix
@@ -33,8 +34,25 @@ export const usePlayer = () => {
     return rotatedTetromino.reverse();
   };
 
+  // ▓▓▓ COMMENT THIS LATER ▓▓▓
   const playerRotate = (stage, direction) => {
+    // Using JSON methods because we cannot use a shallow copy or mutate state
     const playerCopy = JSON.parse(JSON.stringify(player));
+    playerCopy.tetromino = rotate(playerCopy.tetromino, direction);
+
+    // ▓▓▓ COMMENT THIS LATER ▓▓▓
+    const pos = playerCopy.pos.x;
+    let offset = 1;
+    while (checkCollision(playerCopy, stage, { x: 0, y: 0 })) {
+      playerCopy.pos.x += offset;
+      if (offset > playerCopy.tetromino[0].length) {
+        rotate(playerCopy.tetromino, -direction);
+        playerCopy.pos.x = pos;
+        return;
+      }
+    }
+
+    setPlayer(playerCopy);
   };
 
   // resetPlayer position to the center of the grid with useCallback to avoid infinite loops
@@ -47,5 +65,5 @@ export const usePlayer = () => {
   }, []);
 
   // Return the player in an array by itself
-  return [player, updatePlayerPos, resetPlayer];
+  return [player, updatePlayerPos, resetPlayer, playerRotate];
 };

@@ -23,7 +23,7 @@ const Tetris = () => {
   // player is the original state of player (which is technically at the top left of grid, but value 0 which is nothing)
   // updatePlayerPos invokes setPlayer and takes it's previous properties and plus or minuses x/y values depending on keypress
   // resetPlayer is what gives us out first real tetromino and centers it on the grid for it's initial placement
-  const [player, updatePlayerPos, resetPlayer] = usePlayer();
+  const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer();
 
   // stage is the inital stage built by createStage() in gameHelpers.js
   const [stage, setStage] = useStage(player, resetPlayer); // Passing in player because we already have access to it
@@ -44,9 +44,10 @@ const Tetris = () => {
     // Reset everything
     setStage(createStage()); // Creates blank stage
     resetPlayer(); // Sets player to the middle of the grid
+    setGameOver(false);
   };
 
-  //////////////// TEST THIS BLOCK OF CODE
+  // ▓▓▓ COMMENT THIS LATER ▓▓▓
   // Player movement -- Down
   const drop = () => {
     // Check if we are NOT colliding with anything
@@ -56,7 +57,12 @@ const Tetris = () => {
     } else {
       // Otherwise we are colliding with something, either the bottom or anothe previous tetromino, so updatePlayerPos with collided set to true
       // The if condition is checking if y < 1 because
-      if (player.pos.y < 1) updatePlayerPos({ x: 0, y: 1, collided: true });
+      if (player.pos.y < 1) {
+        console.log('GAME OVER!!!');
+        setGameOver(true);
+        setDropTime(null);
+      }
+      updatePlayerPos({ x: 0, y: 0, collided: true });
     }
   };
 
@@ -68,18 +74,19 @@ const Tetris = () => {
   const move = ({ keyCode }) => {
     console.log(keyCode);
     if (!gameOver) {
+      // Left
       if (keyCode === 37) {
-        // Left
         moveHorizontal(-1);
-      } else if (keyCode === 39) {
         // Right
+      } else if (keyCode === 39) {
         moveHorizontal(1);
-      } else if (keyCode === 40) {
         // Down
+      } else if (keyCode === 40) {
         dropPlayer();
-      } else if (keyCode === 38) {
         // Up
-        // Rotate player tetromino
+      } else if (keyCode === 38) {
+        // Rotate player tetromino (first argument is state, second is a value above 0, which will result in direction right)
+        playerRotate(stage, 1);
       }
     }
   };
