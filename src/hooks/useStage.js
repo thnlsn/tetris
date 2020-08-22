@@ -3,6 +3,16 @@ import { createStage } from '../gameHelpers';
 
 export const useStage = (player, resetPlayer) => {
   const [stage, setStage] = useState(createStage());
+  const [rowsCleared, setRowsCleared] = useState(0);
+
+  useEffect(() => {
+    setRowsCleared(0);
+
+    const sweepRows = newStage =>
+     newStage.reduce((accumulator, row) => {
+       if (row.findIndex)
+     })
+  })
 
   // useEffect because this should happen as a side effect of the player moving the tetromino (x), it falling down (y), the tetromino changing, or the tetromino colliding
   useEffect(() => {
