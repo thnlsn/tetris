@@ -16,7 +16,7 @@ export const useStage = (player, resetPlayer) => {
 
   // useEffect because this should happen as a side effect of the player moving the tetromino (x), it falling down (y), the tetromino changing, or the tetromino colliding
   useEffect(() => {
-    console.log('useEffect run!');
+    console.log('useEffect!');
     // Use the previous state as a parameter
     const updateStage = (prevStage) => {
       // First clear stage from previous render by removing everything that should not be there
