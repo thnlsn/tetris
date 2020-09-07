@@ -5,7 +5,6 @@ import Tetris from './components/Tetris';
 
 function App() {
   // Entire game contained within the Tetris component
-
   return (
     <div className='App'>
       <Tetris />

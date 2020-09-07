@@ -1,3 +1,5 @@
+// Any code that makes up parts of the game
+
 export const STAGE_WIDTH = 12;
 export const STAGE_HEIGHT = 20;
 
