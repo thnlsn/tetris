@@ -8,11 +8,16 @@ export const useStage = (player, resetPlayer) => {
   useEffect(() => {
     setRowsCleared(0);
 
-    const sweepRows = newStage =>
-     newStage.reduce((accumulator, row) => {
-       if (row.findIndex)
-     })
-  })
+    // Take the whole stage and reduce it
+    const sweepRows = (newStage) =>
+      newStage.reduce((accumulator, row) => {
+        if (row.findIndex((cell) => cell[0] === 0) === -1) {
+          setRowsCleared((prev) => prev + 1);
+          accumulator.unshift(new Array(newStage[0].length).fill([0, 'clear']));
+          return accumulator;
+        }
+      });
+  });
 
   // useEffect because this should happen as a side effect of the player moving the tetromino (x), it falling down (y), the tetromino changing, or the tetromino colliding
   useEffect(() => {
