@@ -32,6 +32,7 @@ export const checkCollision = (player, stage, { x: moveX, y: moveY }) => {
             'clear'
           // So if the cell we are moving to IS set to clear, then collision is true
         ) {
+          // Return true because if we are at this stage in the function, there is no possible outcomes that come out true
           return true;
         }
       }
