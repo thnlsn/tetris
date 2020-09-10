@@ -1,3 +1,5 @@
+// FOR ALL CODE RELATED TO THE GAME GRID (STAGE)
+
 import { useState, useEffect } from 'react';
 import { createStage } from '../gameHelpers';
 
