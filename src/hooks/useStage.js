@@ -19,7 +19,8 @@ export const useStage = (player, resetPlayer) => {
           return accumulator;
         }
       });
-  });
+    // Because it should only run once on render
+  }, []);
 
   // useEffect because this should happen as a side effect of the player moving the tetromino (x), it falling down (y), the tetromino changing, or the tetromino colliding
   useEffect(() => {
