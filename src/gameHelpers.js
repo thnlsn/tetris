@@ -3,7 +3,7 @@
 export const STAGE_WIDTH = 12;
 export const STAGE_HEIGHT = 20;
 
-// Multidimensional array to represent the grid of the tetris game
+// Multidimensional array to represent the grid of the tetris game (meaning it is an array with nested arrays for each index)
 export const createStage = () =>
   // Creating an array from an array that is equal to 20 empty indexes (imagine a vertical array representing stage height)
   Array.from(
