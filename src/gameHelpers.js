@@ -38,6 +38,6 @@ export const checkCollision = (player, stage, { x: moveX, y: moveY }) => {
       }
     }
   }
-  // Last, if all of the above coerce to false
+  // Last, if all of the above coerce to false (LOOK THROUGH THIS LATER)
   return false;
 };
